@@ -1,35 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import TodoList from './components/TodoList';
+import AddTodoForm from './components/AddTodoForm';
+import './styles.css'; // Importa los estilos aquí
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [todos, setTodos] = useState([]);
+
+  useEffect(() => {
+    // Cargar las tareas desde el backend al montar el componente
+    axios.get('http://localhost:5000/api/todos')
+      .then(response => setTodos(response.data))
+      .catch(error => console.error('Error al cargar las tareas:', error));
+  }, []);
+
+  const handleTodoAdded = (newTodo) => {
+    setTodos([...todos, newTodo]);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className="App">
+      <h1>Aplicación CRUD de Tareas</h1>
+      <AddTodoForm onTodoAdded={handleTodoAdded} />
+      <TodoList todos={todos} />
+    </div>
+  );
+};
 
-export default App
+export default App;

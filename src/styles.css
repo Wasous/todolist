@@ -1,0 +1,109 @@
+/* styles.css */
+
+/* Paleta de colores otoñal */
+:root {
+    --color-fondo: #FFF8E7;
+    /* Un tono claro de amarillo */
+    --color-primario: #FFB347;
+    /* Naranja suave */
+    --color-secundario: #FFCC33;
+    /* Amarillo brillante */
+    --color-acento: #FF8C00;
+    /* Naranja oscuro */
+    --color-texto: #4B3F00;
+    /* Marrón oscuro para el texto */
+}
+
+/* Estilos globales */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+}
+
+h1,
+h2,
+h3 {
+    color: var(--color-acento);
+}
+
+button {
+    background-color: var(--color-primario);
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: var(--color-acento);
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Formulario para añadir tareas */
+.add-todo-form {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.add-todo-form input[type="text"] {
+    flex: 1;
+    padding: 8px;
+    border: 2px solid var(--color-primario);
+    border-right: none;
+    border-radius: 4px 0 0 4px;
+    outline: none;
+}
+
+.add-todo-form button {
+    border-radius: 0 4px 4px 0;
+}
+
+/* Lista de tareas */
+.todo-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.todo-item {
+    background-color: white;
+    border: 2px solid var(--color-primario);
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.todo-item.completed {
+    background-color: var(--color-secundario);
+
+    text-decoration: line-through;
+    opacity: 0.8;
+}
+
+/* Botones en cada tarea */
+.todo-item button {
+    margin-left: 5px;
+    background-color: var(--color-primario);
+    color: white;
+    border: none;
+    padding: 5px 8px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.todo-item button:hover {
+    background-color: var(--color-acento);
+}
